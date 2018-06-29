@@ -16,6 +16,7 @@ public class ForecastRequest(val zipcode: String) {
 
     fun execute(): ForecastResult {
         val forecastJsonStr = URL(COMPLETE_URL + zipcode).readText()
+        println("forecastJsonStr====" + forecastJsonStr)
         return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)
     }
 

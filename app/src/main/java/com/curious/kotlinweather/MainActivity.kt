@@ -1,15 +1,14 @@
 package com.curious.kotlinweather
 
-import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.curious.kotlinweather.domain.commands.RequestForecastCommand
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.custom.async
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
-import java.util.Date
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,23 +19,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         forecast_list.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+        forecast_list.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
+        async() {
+            val result = RequestForecastCommand("94043").execute()
+            println()
 
 
-        async (){
-            val result  = RequestForecastCommand("94043").execute()
             uiThread {
-                forecast_list.adapter = ForecastListAdapter(result);
+                forecast_list.adapter = ForecastListAdapter(result) {
+                    toast(it.date)
+                };
             }
         }
     }
-
-
-
-
-    fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
-        Toast.makeText(this, message, duration).show()
-    }
-
 
 
 }

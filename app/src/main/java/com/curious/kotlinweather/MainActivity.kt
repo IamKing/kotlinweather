@@ -18,21 +18,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        forecast_list.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-        forecast_list.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        forecastList.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+        forecastList.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
         async() {
             val result = RequestForecastCommand("94043").execute()
             println()
 
-
             uiThread {
-                forecast_list.adapter = ForecastListAdapter(result) {
+                forecastList.adapter = ForecastListAdapter(result) {
                     toast(it.date)
                 };
             }
         }
     }
-
-
 }

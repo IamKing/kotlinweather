@@ -4,7 +4,7 @@ import com.curious.kotlinweather.ForecastRequest
 import com.curious.kotlinweather.domain.datasource.ForecastDataMapper
 import com.curious.kotlinweather.domain.model.ForecastList
 
-class RequestForecastCommand(val zipCode:String):
+class RequestForecastCommand(private val zipCode:String):
         Command<ForecastList>{
 
     override fun execute(): ForecastList {

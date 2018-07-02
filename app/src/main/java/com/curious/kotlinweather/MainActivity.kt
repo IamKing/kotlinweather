@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         async() {
             val result = RequestForecastCommand("94043").execute()
-            println()
 
             uiThread {
                 forecastList.adapter = ForecastListAdapter(result) {

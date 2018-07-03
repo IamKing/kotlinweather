@@ -7,5 +7,6 @@ https://github.com/antoniolg/Kotlin-for-Android-Developers
 
 http://www.runoob.com/kotlin/kotlin-tutorial.html
 
-已阅！更多内容请books文件夹中的中英文书本内容
+已阅, 巩固了知识和相关概念！更多内容请books文件夹中的中英文书本内容
+
 18/07/03
